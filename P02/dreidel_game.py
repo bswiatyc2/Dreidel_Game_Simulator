@@ -56,7 +56,7 @@ class Game:
 
     # ------------------------------------------------------------------- main
     def play(self):
-        print(f"\nGame begins! with:")
+        print("\nGame begins! with:")
         self.show_players()
         print()
 
@@ -85,10 +85,10 @@ class Game:
             self.__player_take_turn(player, round_number)
         self.__print_round_summary()
 
-    # ------new methoud pot check---------
+    # ---- refill pot if it runs low ----
 
-    def __pot_check(self,current_pot):
-        if current_pot.get_coins() < 2:
+    def __pot_check(self):
+        if self.__pot.get_coins() < 2:
             self.__initialize_pot()
 
 
@@ -105,7 +105,7 @@ class Game:
                 #       adjust pot and player
                 self.__adjust_pot_player(player, side_up)
                 print(f"after dreidel spin player has {player.get_coins()} coins")
-                self.__pot_check(self.__pot)
+                self.__pot_check()
 
 
 
@@ -113,7 +113,7 @@ class Game:
         player.ante()
         self.__pot.add_one_coin()
 
-    #("shin", "gimel", "hey", "nun")
+
     def __adjust_pot_player(self, player, side_up):
         if side_up == "gimel":
             player.add_coins(self.__pot.payout_gimel())
@@ -135,10 +135,7 @@ class Game:
 
     def __announce_winner(self):
         print("\n========== GAME OVER ==========")
-        # spec 6: winner is the player who ate the most chocolate coins
-        # TO DO finish this function
-        # go throgh winners
-        # see who was not eliminated but has the lesat amount of coins
+        # winner must still be active and have eaten the most coins
         winner_amount = 0
         winner = ""
         for player in self.__players:
@@ -157,9 +154,5 @@ class Game:
 
 
 if __name__ == "__main__":
-    def start_game():
         game = Game()
         game.play()
-
-
-    start_game()
