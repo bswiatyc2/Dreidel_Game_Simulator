@@ -1,17 +1,14 @@
 """
-this is a draidel game craeted as part of an asinment in an advavanced python class:
+Dreidel class for the dreidel coin game — see README.md for full game rules.
 
-THE GOAL:
-    crate a draeidal class in wich we can simulate a game of draidel
-
-RULES OF THE GAME:
-
+Represents a single dreidel that can be spun to land on one of four sides:
+nun, gimel, hey, shin
 """
 import random
 
 
 class Dreidel:
-    __sides = ("shin", "gimel", "hey", "nun")
+    __SIDES = ("shin", "gimel", "hey", "nun")
 
     def __init__(self, color):
         self.__sideup = "spinning"
@@ -29,9 +26,7 @@ class Dreidel:
 
     # ---------------------------------------------------------------- action
     def spin(self):
-        #side_up = random.randint(0, 3)
-        #self.__sideup = self.__sides[side_up]
-        self.__sideup = random.choice(self.__sides)
+        self.__sideup = random.choice(self.__SIDES)
 
 
 
@@ -58,7 +53,4 @@ if __name__ == "__main__":
     print("svivon: ", svivon)
     print("mean dreidel", mean)
 
-# print("my dreidel calls .get_color():", svivon.get_color())
-# for turn in range(1, 21):
-#     svivon.spin()
-#     print(f"turn {turn}: {svivon}")
+
